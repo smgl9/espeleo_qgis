@@ -1,0 +1,21 @@
+{
+  "name": "hassio_lab",
+  "version": "0.0.1",
+  "author": "Ismael Perez <ismaelprojo@gmail.com>",
+  "license": "GPL",
+  "private": true,
+  "scripts": {
+    "build": "rimraf dist && npm run -s og-image && npm run -s deck",
+    "deck": "marp --no-stdin slides/hassio_lab.md -o dist/index.html && npm run -s vbox && npm run -s bring_up && ncp assets dist/assets",
+    "vbox": "marp --no-stdin slides/vbox.md -o dist/vbox.html && marp --no-stdin slides/vbox.md -o dist/vbox.pdf",
+    "bring_up": "marp --no-stdin slides/bring_up.md -o dist/bring_up.html && marp --no-stdin slides/bring_up.md -o dist/bring_up.pdf",
+    "now-build": "npm run -s deck",
+    "og-image": "marp slides/hassio_lab.md -o dist/og-image.jpg",
+    "start": "marp -ps ."
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^2.0.0",
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.2"
+  }
+}
