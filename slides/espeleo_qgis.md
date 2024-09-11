@@ -22,27 +22,78 @@ _paginate: false
 ---
 
 <style scoped>{text-align: left;font-size: 30px;}</style>  
-### Panel de control
+### GIS
 
-Contiene los dispositivos configurados en HA.
-Por defecto está gestionado automáticamente por HA.
+- Geographic information system.
+- [QGIS](https://www.qgis.org/)
+  
+---
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Recopilación de datos en exploración
+
+- Waypoints
+- Tracks -> Áreas de exploración
+### Formato de datos
+
+- Waypoints: UTM
+- Tracks: GPX
+
+---
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Importación de datos en QGIS
+- Fuentes de mapas
+  - IGN
+  - QGIS plugins
+- Tracks / Waypoints
 
 ---
 
-<style scoped>{text-align: left;font-size: 30px;}</style> 
-### Complementos:
-- Ajustes -> Complementos -> Buscar complementos:
-  - Duck DNS
-  - ESPHome
-  - File editor
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Importación de datos de cavidades
+- GPX
+### Exportación en KML
 
-- Ajustes de complementos:
-  ![100%](../assets/images/file_editor_setting.png)
+
+---
+
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Generación de webmap QGIS
+
+
+---
+
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Importación de datos del proyecto QGIS
+- IGN
+- Google earth
+
+---
+
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Sincronización de proyectos
+- Qfield
+
+---
+
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Opciones avanzadas
+  - Planificación de prospecciones
+  - Cercanía a superficie
+  - Información de profundidad.
   
 ---
 
-<style scoped>{text-align: left;font-size: 30px;}</style> 
-### Configuración Duck DNS:
+<style scoped>{text-align: left;font-size: 30px;}</style>  
+### Referencias
+  - [Manual QGIS ESOCAN](https://www.dropbox.com/scl/fi/ppryq7sz1aeftvgheg9kv/QGIS-para-espeleo.pdf?rlkey=hqwg08i4aviaen5k359klk0gy&e=1&dl=0)
+  - [QGIS for Cavers (Video)](https://www.youtube.com/watch?v=opTZnMUCNdk)
+  - [QField](https://qfield.org/)
+  
+
+
+
+
+
 
 
 
