@@ -13,7 +13,7 @@ _paginate: false
 
 ![bg left 100%](../assets/images/qgis_logo.png)
 
-# <!--fit--> Tools installation guide
+# <!--fit--> QGIS para espeleólogos
 
 GE Niphargus
     - Ismael Pérez
