@@ -13,13 +13,14 @@ _paginate: false
 
 ![bg left 100%](../assets/images/logo_gen.png)
 
-# <!--fit--> QGIS para espeleólogos
+## <!--fit--> QGIS para espeleólogos
 
-GE Niphargus
-    - Ismael Pérez
-    - Óscar García
+**GE Niphargus**
+ 
+  - Ismael Pérez
+  - Óscar García
 
-- [Guide](./espeleo_qgis.html#1)
+[Guia](./espeleo_qgis.html#1)
 
 
 <!-- This is presenter note. You can write down notes through HTML comment.

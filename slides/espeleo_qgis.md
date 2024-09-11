@@ -10,14 +10,12 @@ paginate: true
 _paginate: false
 
 ---
+![bg left 100%](../assets/images/logo_gen.png)
 
 <style scoped>{text-align: left;font-size: 30px;}</style> 
 ### Autores
 - Óscar García
-  - Espeleología 
-  - Topografía
 - Ismael Pérez
-  - Espeleología
 
 ---
 
