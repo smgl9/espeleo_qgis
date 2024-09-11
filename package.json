@@ -1,14 +1,15 @@
 {
-  "name": "espelo_qgis",
+  "name": "espeleo_qgis",
   "version": "0.0.1",
   "author": "Ismael Perez <ismaelprojo@gmail.com>",
   "license": "GPL",
   "private": true,
   "scripts": {
     "build": "rimraf dist && npm run -s og-image && npm run -s deck",
-    "deck": "marp --no-stdin slides/espelo_qgis.md -o dist/index.html && npm run -s vbox && npm run -s bring_up && ncp assets dist/assets",
+    "deck": "marp --no-stdin slides/espeleo_qgis_index.md -o dist/index.html && npm run -s espeleo_qgis && ncp assets dist/assets",
+    "espeleo_qgis": "marp --no-stdin slides/espeleo_qgis.md -o dist/espeleo_qgis.html && marp --no-stdin slides/espeleo_qgis.md -o dist/espeleo_qgis.pdf",
     "now-build": "npm run -s deck",
-    "og-image": "marp slides/espelo_qgis.md -o dist/og-image.jpg",
+    "og-image": "marp slides/espeleo_qgis_index.md -o dist/og-image.jpg",
     "start": "marp -ps ."
   },
   "devDependencies": {
