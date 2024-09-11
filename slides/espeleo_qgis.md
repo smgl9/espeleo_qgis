@@ -28,11 +28,10 @@ _paginate: false
 ---
 <style scoped>{text-align: left;font-size: 30px;}</style>  
 ### Recopilación de datos en exploración
-
 - Waypoints
 - Tracks -> Áreas de exploración
-### Formato de datos
 
+### Formato de datos
 - Waypoints: UTM
 - Tracks: GPX
 
@@ -40,8 +39,9 @@ _paginate: false
 <style scoped>{text-align: left;font-size: 30px;}</style>  
 ### Importación de datos en QGIS
 - Fuentes de mapas
-  - IGN
+  - [IGN](https://www.ign.es/web/ide-area-nodo-ide-ign)
   - QGIS plugins
+    -  Complementos > Administrar e instalar complementos
 - Tracks / Waypoints
 
 ---
@@ -62,11 +62,11 @@ _paginate: false
 
 <style scoped>{text-align: left;font-size: 30px;}</style>  
 ### Importación de datos del proyecto QGIS
-- IGN
+- IGN - Mapas de España
 - Google earth
 
 ---
-
+![bg left 100%](../assets/images/qfield.png)
 <style scoped>{text-align: left;font-size: 30px;}</style>  
 ### Sincronización de proyectos
 - Qfield
