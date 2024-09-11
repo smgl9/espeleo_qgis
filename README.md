@@ -1,5 +1,5 @@
-# Hassio lab
-Hassio started guide
+# espelo_qgis
+Guía práctica de QGIS para espeleólogos
 
 ## Dependencies:
 

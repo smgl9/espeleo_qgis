@@ -1,10 +1,10 @@
 ---
 
 header:  -[Index](./index.html#1)-
-footer:  Hassio bring-up installation guide --  [pdf slides](./bring_up.pdf)
+footer:  Ismael Pérez GE Niphargus --  [pdf slides](./espeleo_qgis.pdf)
 marp: true
-title: Hassio bring-up installation guide
-description: Starting with hassio
+title: QGIS para espeleólogos
+description: Guía práctica de GIS para espelólogos
 theme: uncover
 paginate: true
 _paginate: false
@@ -12,11 +12,12 @@ _paginate: false
 ---
 
 <style scoped>{text-align: left;font-size: 30px;}</style> 
-### Configuración inicial
-- Crear una cuenta de administrador.
-- Introducir nombre de la casa.
-- Seleccionar ubicación. ESta información configura la zona horaria, predicción meteorológica, amanecer, ocaso, etc.
-- En el paso previo a la finalización del proceso aparacerán los dispositivos detectados en la red de Home Assistant.
+### Autores
+- Óscar García
+  - Espeleología 
+  - Topografía
+- Ismael Pérez
+  - Espeleología
 
 ---
 
