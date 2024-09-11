@@ -11,7 +11,7 @@ _paginate: false
 
 ---
 
-![bg left 100%](../assets/images/qgis_logo.png)
+![bg left 100%](../assets/images/logo_gen.png)
 
 # <!--fit--> QGIS para espeleólogos
 
