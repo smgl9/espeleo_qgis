@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx creator="WikiLoc - http://www.wikiloc.com" version="1.1" xmlns="http://www.topografix.com/GPX/1/1">
+    <wpt lat="42.948006" lon="-3.702107">
+        <ele>1025.844727</ele>
+        <time>2010-11-14T12:50:11.894+01:00</time>
+        <name>Covanegra</name>
+        <cmt>13-NOV-10 10:13:15</cmt>
+        <desc>13-NOV-10 10:13:15</desc>
+    </wpt>
+    <wpt lat="42.935643" lon="-3.719258">
+        <ele>0.000000</ele>
+        <time>2010-11-14T12:50:11.894+01:00</time>
+        <name>cruce-1</name>
+        <cmt>N-232 and Road</cmt>
+        <desc>N-232 and Road</desc>
+    </wpt>
+    <wpt lat="42.945671" lon="-3.719082">
+        <ele>0.000000</ele>
+        <time>2010-11-14T12:50:11.894+01:00</time>
+        <name>cruce-2</name>
+        <cmt>Road</cmt>
+        <desc>Road</desc>
+    </wpt>
+    <wpt lat="42.947330" lon="-3.715897">
+        <ele>0.000000</ele>
+        <time>2010-11-14T12:50:11.894+01:00</time>
+        <name>Parking</name>
+        <cmt>Unpaved Road</cmt>
+        <desc>Unpaved Road</desc>
+    </wpt>
+    <wpt lat="42.935300" lon="-3.717456">
+        <ele>0.000000</ele>
+        <time>2010-11-14T12:50:11.894+01:00</time>
+        <name>CubillosDelRoj</name>
+        <cmt>Cubillos Del Rojo</cmt>
+        <desc>Cubillos Del Rojo</desc>
+    </wpt>
+    <trk>
+        <name>Covanegra-Burgos</name>
+        <cmt>Acceso a Covanegra en burgos, desde Cubillos del Rojo</cmt>
+        <desc>Acceso a Covanegra en burgos, desde Cubillos del Rojo</desc>
+        <trkseg>
+            <trkpt lat="42.935806" lon="-3.719470">
+                <ele>928.290283</ele>
+            </trkpt>
+            <trkpt lat="42.938585" lon="-3.720219">
+                <ele>961.455810</ele>
+            </trkpt>
+            <trkpt lat="42.943575" lon="-3.718828">
+                <ele>958.091309</ele>
+            </trkpt>
+            <trkpt lat="42.945942" lon="-3.719087">
+                <ele>957.610596</ele>
+            </trkpt>
+            <trkpt lat="42.947126" lon="-3.715460">
+                <ele>960.494385</ele>
+            </trkpt>
+            <trkpt lat="42.947909" lon="-3.713474">
+                <ele>968.665527</ele>
+            </trkpt>
+            <trkpt lat="42.948040" lon="-3.711251">
+                <ele>971.068848</ele>
+            </trkpt>
+            <trkpt lat="42.949049" lon="-3.709692">
+                <ele>974.433594</ele>
+            </trkpt>
+            <trkpt lat="42.949380" lon="-3.707813">
+                <ele>986.449951</ele>
+            </trkpt>
+            <trkpt lat="42.947996" lon="-3.702682">
+                <ele>1024.902832</ele>
+            </trkpt>
+        </trkseg>
+    </trk>
+</gpx>

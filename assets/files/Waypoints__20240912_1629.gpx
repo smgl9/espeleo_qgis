@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Mapas de España v.3.5.1" version="1.1" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:om="http://www.oruxmaps.com/oruxmapsextensions/1/0" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<!-- owner: d9c847c9253a8e -->
+<metadata>
+<name><![CDATA[Waypoints]]></name>
+<link href="https://www.oruxmaps.com">
+<text>Mapas de España</text>
+</link>
+<time>2024-09-12T14:29:13.728Z</time></metadata>
+<wpt lat="43.1524597" lon="-3.5735285">
+<ele>0.00</ele>
+<time>2024-09-12T14:28:15.405Z</time>
+<name><![CDATA[la sia]]></name>
+<sym>Waypoint</sym>
+<type>Waypoint</type>
+<extensions>
+<om:oruxmapsextensions>
+<om:ext type="ICON" subtype="0">1</om:ext>
+</om:oruxmapsextensions>
+</extensions>
+</wpt>
+<wpt lat="43.1306026" lon="-3.5456443">
+<ele>0.00</ele>
+<time>2024-09-12T14:27:51.411Z</time>
+<name><![CDATA[picon blanco]]></name>
+<sym>Waypoint</sym>
+<type>Waypoint</type>
+<extensions>
+<om:oruxmapsextensions>
+<om:ext type="ICON" subtype="0">1</om:ext>
+</om:oruxmapsextensions>
+</extensions>
+</wpt>
+</gpx>
