@@ -57,6 +57,8 @@ _paginate: false
 <style scoped>{text-align: left;font-size: 30px;}</style>  
 ### Generación de webmap QGIS
 
+- web2gis plugin
+[ejemplo](../assets/files/qgis2web/index.html)
 
 ---
 

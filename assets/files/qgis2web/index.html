@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 1275px;
+            height: 1017px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/L.Control.Layers.Tree.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-tilelayer-wmts.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Covanegratrackaccesotracks_3.js"></script>
+        <script src="data/accesotorcamorterostracks_4.js"></script>
+        <script src="data/torcagrajeraycorralontracks_5.js"></script>
+        <script src="data/Waypoints__20240912_1629waypoints_6.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:false, maxZoom:28, minZoom:1
+        }).fitBounds([[43.06524487270664,-3.570831927533365],[43.0882001473955,-3.531417027533349]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        // remove popup's row if "visible-with-data"
+        function removeEmptyRowsFromPopupContent(content, feature) {
+         var tempDiv = document.createElement('div');
+         tempDiv.innerHTML = content;
+         var rows = tempDiv.querySelectorAll('tr');
+         for (var i = 0; i < rows.length; i++) {
+             var td = rows[i].querySelector('td.visible-with-data');
+             var key = td ? td.id : '';
+             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                 rows[i].parentNode.removeChild(rows[i]);
+             }
+         }
+         return tempDiv.innerHTML;
+        }
+        // add class to format popup if it contains media
+		function addClassToPopupIfMedia(content, popup) {
+			var tempDiv = document.createElement('div');
+			tempDiv.innerHTML = content;
+			if (tempDiv.querySelector('td img')) {
+				popup._contentNode.classList.add('media');
+					// Delay to force the redraw
+					setTimeout(function() {
+						popup.update();
+					}, 10);
+			} else {
+				popup._contentNode.classList.remove('media');
+			}
+		}
+        var zoomControl = L.control.zoom({
+            position: 'topleft'
+        }).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_CartografadelIGN_0');
+        map.getPane('pane_CartografadelIGN_0').style.zIndex = 400;
+        var layer_CartografadelIGN_0 = L.tileLayer.wmts('https://www.ign.es/wmts/mapa-raster', {
+            pane: 'pane_CartografadelIGN_0',
+            layer: 'MTN',
+            tilematrixSet: 'GoogleMapsCompatible',
+            format: 'image/jpeg',
+            style: 'default',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            opacity: 1.0,
+            attribution: '',
+        });
+        map.addLayer(layer_CartografadelIGN_0);
+        map.createPane('pane_ModeloDigitaldeSuperficiesLiDAR_1');
+        map.getPane('pane_ModeloDigitaldeSuperficiesLiDAR_1').style.zIndex = 401;
+        var layer_ModeloDigitaldeSuperficiesLiDAR_1 = L.tileLayer.wmts('https://wmts-mapa-lidar.idee.es/lidar', {
+            pane: 'pane_ModeloDigitaldeSuperficiesLiDAR_1',
+            layer: 'EL.GridCoverageDSM',
+            tilematrixSet: 'GoogleMapsCompatible',
+            format: 'image/png',
+            style: 'default',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            opacity: 1.0,
+            attribution: '',
+        });
+        map.addLayer(layer_ModeloDigitaldeSuperficiesLiDAR_1);
+        map.createPane('pane_ImgenesdesatliteSentinelyortofotosPNOA_2');
+        map.getPane('pane_ImgenesdesatliteSentinelyortofotosPNOA_2').style.zIndex = 402;
+        var layer_ImgenesdesatliteSentinelyortofotosPNOA_2 = L.tileLayer.wmts('https://www.ign.es/wmts/pnoa-ma', {
+            pane: 'pane_ImgenesdesatliteSentinelyortofotosPNOA_2',
+            layer: 'OI.OrthoimageCoverage',
+            tilematrixSet: 'GoogleMapsCompatible',
+            format: 'image/jpeg',
+            style: 'default',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            opacity: 1.0,
+            attribution: '',
+        });
+        map.addLayer(layer_ImgenesdesatliteSentinelyortofotosPNOA_2);
+        function pop_Covanegratrackaccesotracks_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['symbol'] !== null ? autolinker.link(feature.properties['symbol'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['number'] !== null ? autolinker.link(feature.properties['number'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['comment'] !== null ? autolinker.link(feature.properties['comment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['source'] !== null ? autolinker.link(feature.properties['source'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url name'] !== null ? autolinker.link(feature.properties['url name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Covanegratrackaccesotracks_3_0() {
+            return {
+                pane: 'pane_Covanegratrackaccesotracks_3',
+                opacity: 1,
+                color: 'rgba(133,182,111,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Covanegratrackaccesotracks_3');
+        map.getPane('pane_Covanegratrackaccesotracks_3').style.zIndex = 403;
+        map.getPane('pane_Covanegratrackaccesotracks_3').style['mix-blend-mode'] = 'normal';
+        var layer_Covanegratrackaccesotracks_3 = new L.geoJson(json_Covanegratrackaccesotracks_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Covanegratrackaccesotracks_3',
+            layerName: 'layer_Covanegratrackaccesotracks_3',
+            pane: 'pane_Covanegratrackaccesotracks_3',
+            onEachFeature: pop_Covanegratrackaccesotracks_3,
+            style: style_Covanegratrackaccesotracks_3_0,
+        });
+        bounds_group.addLayer(layer_Covanegratrackaccesotracks_3);
+        map.addLayer(layer_Covanegratrackaccesotracks_3);
+        function pop_accesotorcamorterostracks_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['symbol'] !== null ? autolinker.link(feature.properties['symbol'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['number'] !== null ? autolinker.link(feature.properties['number'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['comment'] !== null ? autolinker.link(feature.properties['comment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['source'] !== null ? autolinker.link(feature.properties['source'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url name'] !== null ? autolinker.link(feature.properties['url name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_accesotorcamorterostracks_4_0() {
+            return {
+                pane: 'pane_accesotorcamorterostracks_4',
+                opacity: 1,
+                color: 'rgba(190,8,48,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_accesotorcamorterostracks_4');
+        map.getPane('pane_accesotorcamorterostracks_4').style.zIndex = 404;
+        map.getPane('pane_accesotorcamorterostracks_4').style['mix-blend-mode'] = 'normal';
+        var layer_accesotorcamorterostracks_4 = new L.geoJson(json_accesotorcamorterostracks_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_accesotorcamorterostracks_4',
+            layerName: 'layer_accesotorcamorterostracks_4',
+            pane: 'pane_accesotorcamorterostracks_4',
+            onEachFeature: pop_accesotorcamorterostracks_4,
+            style: style_accesotorcamorterostracks_4_0,
+        });
+        bounds_group.addLayer(layer_accesotorcamorterostracks_4);
+        map.addLayer(layer_accesotorcamorterostracks_4);
+        function pop_torcagrajeraycorralontracks_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['symbol'] !== null ? autolinker.link(feature.properties['symbol'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['number'] !== null ? autolinker.link(feature.properties['number'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['comment'] !== null ? autolinker.link(feature.properties['comment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['source'] !== null ? autolinker.link(feature.properties['source'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url name'] !== null ? autolinker.link(feature.properties['url name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_torcagrajeraycorralontracks_5_0() {
+            return {
+                pane: 'pane_torcagrajeraycorralontracks_5',
+                opacity: 1,
+                color: 'rgba(219,30,42,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_torcagrajeraycorralontracks_5');
+        map.getPane('pane_torcagrajeraycorralontracks_5').style.zIndex = 405;
+        map.getPane('pane_torcagrajeraycorralontracks_5').style['mix-blend-mode'] = 'normal';
+        var layer_torcagrajeraycorralontracks_5 = new L.geoJson(json_torcagrajeraycorralontracks_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_torcagrajeraycorralontracks_5',
+            layerName: 'layer_torcagrajeraycorralontracks_5',
+            pane: 'pane_torcagrajeraycorralontracks_5',
+            onEachFeature: pop_torcagrajeraycorralontracks_5,
+            style: style_torcagrajeraycorralontracks_5_0,
+        });
+        bounds_group.addLayer(layer_torcagrajeraycorralontracks_5);
+        map.addLayer(layer_torcagrajeraycorralontracks_5);
+        function pop_Waypoints__20240912_1629waypoints_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['elevation'] !== null ? autolinker.link(feature.properties['elevation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['comment'] !== null ? autolinker.link(feature.properties['comment'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['source'] !== null ? autolinker.link(feature.properties['source'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url'] !== null ? autolinker.link(feature.properties['url'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['url name'] !== null ? autolinker.link(feature.properties['url name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Waypoints__20240912_1629waypoints_6_0() {
+            return {
+                pane: 'pane_Waypoints__20240912_1629waypoints_6',
+                radius: 13.2,
+                opacity: 1,
+                color: 'rgba(184,8,8,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(184,8,8,1.0)',
+                interactive: true,
+            }
+        }
+        function style_Waypoints__20240912_1629waypoints_6_1() {
+            return {
+                pane: 'pane_Waypoints__20240912_1629waypoints_6',
+                radius: 14.4,
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Waypoints__20240912_1629waypoints_6');
+        map.getPane('pane_Waypoints__20240912_1629waypoints_6').style.zIndex = 406;
+        map.getPane('pane_Waypoints__20240912_1629waypoints_6').style['mix-blend-mode'] = 'normal';
+        var layer_Waypoints__20240912_1629waypoints_6 = new L.geoJson.multiStyle(json_Waypoints__20240912_1629waypoints_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Waypoints__20240912_1629waypoints_6',
+            layerName: 'layer_Waypoints__20240912_1629waypoints_6',
+            pane: 'pane_Waypoints__20240912_1629waypoints_6',
+            onEachFeature: pop_Waypoints__20240912_1629waypoints_6,
+            pointToLayers: [function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Waypoints__20240912_1629waypoints_6_0(feature));
+            },function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Waypoints__20240912_1629waypoints_6_1(feature));
+            },
+        ]});
+        bounds_group.addLayer(layer_Waypoints__20240912_1629waypoints_6);
+        map.addLayer(layer_Waypoints__20240912_1629waypoints_6);
+        var baseMaps = {};
+        var overlaysTree = [
+        {label: '<b>waypoints</b>', selectAllCheckbox: true, children: [
+            {label: '<img src="legend/Waypoints__20240912_1629waypoints_6.png" /> Waypoints__20240912_1629, waypoints', layer: layer_Waypoints__20240912_1629waypoints_6},]},
+        {label: '<b>tracks</b>', selectAllCheckbox: true, children: [
+            {label: '<img src="legend/torcagrajeraycorralontracks_5.png" /> torca-grajera-y-corralon, tracks', layer: layer_torcagrajeraycorralontracks_5},
+            {label: '<img src="legend/accesotorcamorterostracks_4.png" /> acceso-torca-morteros, tracks', layer: layer_accesotorcamorterostracks_4},
+            {label: '<img src="legend/Covanegratrackaccesotracks_3.png" /> Covanegra (track acceso), tracks', layer: layer_Covanegratrackaccesotracks_3},]},
+        {label: '<b>mapas</b>', selectAllCheckbox: true, children: [
+            {label: "Imágenes de satélite Sentinel y ortofotos PNOA", layer: layer_ImgenesdesatliteSentinelyortofotosPNOA_2},
+            {label: "Modelo Digital de Superficies LiDAR", layer: layer_ModeloDigitaldeSuperficiesLiDAR_1},
+            {label: "Cartografía del IGN", layer: layer_CartografadelIGN_0},]},]
+        var lay = L.control.layers.tree(null, overlaysTree,{
+            //namedToggle: true,
+            //selectorBack: false,
+            //closedSymbol: '&#8862; &#x1f5c0;',
+            //openedSymbol: '&#8863; &#x1f5c1;',
+            //collapseAll: 'Collapse all',
+            //expandAll: 'Expand all',
+            collapsed: false, 
+        });
+        lay.addTo(map);
+		document.addEventListener("DOMContentLoaded", function() {
+            // set new Layers List height which considers toggle icon
+            function newLayersListHeight() {
+                var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
+                if (layerScrollbarElement) {
+                    var layersListElement = document.querySelector('.leaflet-control-layers-list');
+                    var originalHeight = layersListElement.style.height 
+                        || window.getComputedStyle(layersListElement).height;
+                    var newHeight = parseFloat(originalHeight) - 50;
+                    layersListElement.style.height = newHeight + 'px';
+                }
+            }
+            var isLayersListExpanded = true;
+            var controlLayersElement = document.querySelector('.leaflet-control-layers');
+            var toggleLayerControl = document.querySelector('.leaflet-control-layers-toggle');
+            // toggle Collapsed/Expanded and apply new Layers List height
+            toggleLayerControl.addEventListener('click', function() {
+                if (isLayersListExpanded) {
+                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
+                } else {
+                    controlLayersElement.classList.add('leaflet-control-layers-expanded');
+                }
+                isLayersListExpanded = !isLayersListExpanded;
+                newLayersListHeight()
+            });	
+			// apply new Layers List height if toggle layerstree
+			if (controlLayersElement) {
+				controlLayersElement.addEventListener('click', function(event) {
+					var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
+					if (toggleLayerHeaderPointer) {
+						newLayersListHeight();
+					}
+				});
+			}
+            // Collapsed/Expanded at Start to apply new height
+            setTimeout(function() {
+                toggleLayerControl.click();
+            }, 10);
+            setTimeout(function() {
+                toggleLayerControl.click();
+            }, 10);
+            // Collapsed touch/small screen
+            var isSmallScreen = window.innerWidth < 650;
+            if (isSmallScreen) {
+                setTimeout(function() {
+                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
+                    isLayersListExpanded = !isLayersListExpanded;
+                }, 500);
+            }  
+        });       
+        setBounds();
+        </script>
+    </body>
+</html>
